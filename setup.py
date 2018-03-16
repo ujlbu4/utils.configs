@@ -39,7 +39,6 @@ setup(
             '*configs/*.conf'  # at least validator package
         ],
     },
-    namespace_packages=["utils.configs"],
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
 
