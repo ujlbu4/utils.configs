@@ -9,17 +9,12 @@ try:
 except ImportError:
     from distutils.core import setup, find_packages
 
-version = '0.0.2'
-
-readme = open(os.path.join(DIR, 'README.md')).read()
-
-# todo: pack modules inside test_utils (now they packing out of test_utils)
+version = '0.0.4'
 
 setup(
     name='configger',
     version=version,
     description="""pyhocon configs""",
-    long_description=readme,
     author='Ilya Shubkin',
     author_email='ilya.shubkin@gmail.com',
     url='https://github.com/ujlbu4/utils.configs',
@@ -32,13 +27,7 @@ setup(
 
     # If there are data files included in your packages that need to be
     # installed, specify them here.
-    package_data={
-        # If any package contains configs/*.conf and templates/* files, include them:
-        '': [
-            '*templates/*',  # at least generator package
-            '*configs/*.conf'  # at least validator package
-        ],
-    },
+    # include_package_data=True,
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
 

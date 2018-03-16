@@ -6,7 +6,8 @@ import os
 config = ConfigTree(root=True)
 
 
-def _load(src_invoking_file, config_folder_name="configs", application_conf="application.conf", reference_conf="reference.conf"):
+def _load(src_invoking_file, config_folder_name="configs", application_conf="application.conf", reference_conf="reference.conf",
+          secrets_conf="secrets.conf"):
     package_path = os.path.dirname(src_invoking_file)
 
     local_application_conf = ConfigTree(TypesafeConfigFactory
@@ -21,9 +22,12 @@ def _load(src_invoking_file, config_folder_name="configs", application_conf="app
                                                           config_folder_name=config_folder_name,
                                                           reference_conf=reference_conf),
                                                   required=False))
+    local_secrets_conf = ConfigTree(TypesafeConfigFactory
+                                      .parse_file(f'{package_path}/{config_folder_name}/{secrets_conf}',
+                                                  required=False))
 
     # c = merge_configs(local_reference_conf, local_application_conf)
-    c = local_application_conf.with_fallback(local_reference_conf)
+    c = local_application_conf.with_fallback(local_reference_conf).with_fallback(local_secrets_conf)
 
     return c
 
