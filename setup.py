@@ -16,7 +16,7 @@ readme = open(os.path.join(DIR, 'README.md')).read()
 # todo: pack modules inside test_utils (now they packing out of test_utils)
 
 setup(
-    name='utils.configs',
+    name='configger',
     version=version,
     description="""pyhocon configs""",
     long_description=readme,
@@ -39,6 +39,7 @@ setup(
             '*configs/*.conf'  # at least validator package
         ],
     },
+    namespace_packages=["utils.configs"],
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
 
