@@ -8,23 +8,24 @@ config = ConfigTree(root=True)
 
 def _load(src_invoking_file, config_folder_name="configs", application_conf="application.conf", reference_conf="reference.conf",
           secrets_conf="secrets.conf"):
+    def define_path(path, folder, file):
+        """
+        >> "/".join(list(filter(lambda x: x, ["aaa", None, "", "ccc"])))
+        'aaa/ccc'
+        """
+        return "/".join(list(filter(lambda x: x, [path, folder, file])))
+
     package_path = os.path.dirname(src_invoking_file)
 
     local_application_conf = ConfigTree(TypesafeConfigFactory
-                                        .parse_file('{package_path}/{config_folder_name}/{application_conf}'
-                                                    .format(package_path=package_path,
-                                                            config_folder_name=config_folder_name,
-                                                            application_conf=application_conf),
+                                        .parse_file(define_path(path=package_path, folder=config_folder_name, file=application_conf),
                                                     required=False))
     local_reference_conf = ConfigTree(TypesafeConfigFactory
-                                      .parse_file('{package_path}/{config_folder_name}/{reference_conf}'
-                                                  .format(package_path=package_path,
-                                                          config_folder_name=config_folder_name,
-                                                          reference_conf=reference_conf),
+                                      .parse_file(define_path(path=package_path, folder=config_folder_name, file=reference_conf),
                                                   required=False))
     local_secrets_conf = ConfigTree(TypesafeConfigFactory
-                                      .parse_file(f'{package_path}/{config_folder_name}/{secrets_conf}',
-                                                  required=False))
+                                    .parse_file(define_path(path=package_path, folder=config_folder_name, file=secrets_conf),
+                                                required=False))
 
     # c = merge_configs(local_reference_conf, local_application_conf)
     c = local_application_conf.with_fallback(local_reference_conf).with_fallback(local_secrets_conf)

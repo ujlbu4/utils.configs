@@ -1,6 +1,6 @@
 from sure import expect
 
-import configs
+import configger as configs
 
 from pyhocon import ConfigFactory
 from pyhocon.exceptions import ConfigMissingException
@@ -81,6 +81,11 @@ class TestConfig:
         config = configs._load(__file__, config_folder_name="data", application_conf="unexist1.conf", reference_conf="unexist2.conf")
 
         config.as_plain_ordered_dict().should.be.equal({})
+
+    def test_load_local(self):
+        config = configs._load(__file__, config_folder_name="", application_conf="config-local.conf", reference_conf="doesnot-metter.conf")
+
+        config.get("facade.base_url").should.be.equal("http://config-local.url")
 
     def test_collapse_config_env_vars_exist_env(self):
         config = ConfigFactory.from_dict({"facade": {"base_url": "http://base.url",
