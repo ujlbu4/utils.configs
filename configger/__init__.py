@@ -56,12 +56,12 @@ def merge_root(config_current, config_from_file, is_root):
     return updated_conf
 
 
-def load_config(file, is_root=False):
+def load_config(file, subfolder=None, is_root=False):
     # if not isinstance(current_config, ConfigTree):
     #     raise TypeError('A current_config must be a [{}] type'.format(ConfigTree))
     global config
 
-    c = _load(file)
+    c = _load(file, subfolder)
 
     updated_conf = merge_root(config, c, is_root)
 
