@@ -8,6 +8,8 @@ if [ ! -d "venv" ]; then
 fi
 . venv/bin/activate
 
+ls -l
+ls -l venv
 ########################
 # Step 2: Execute Test
 ########################
