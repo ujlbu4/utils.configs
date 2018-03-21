@@ -10,6 +10,7 @@ fi
 
 ls -l
 ls -l venv
+ls -l venv/bin/
 ########################
 # Step 2: Execute Test
 ########################
