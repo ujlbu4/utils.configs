@@ -15,5 +15,6 @@ pip install -r requirements.txt -r requirements.dev.txt
 # Step 2: Execute Test
 ########################
 #nosetests --with-xunit --all-modules --traverse-namespace --with-xcoverage --cover-package=me.maxwu --cover-inclusive --logging-level=INFO --debug=me.maxwu -s -v --xunit-file ci-stat_nose_xunit.xml --cover-html ./test
-python -m pytest ./
+python -m pytest --junit-xml=./reports/junit-report.xml ./
+
 #EOF
