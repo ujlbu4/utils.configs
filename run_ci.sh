@@ -8,9 +8,9 @@ if [ ! -d "venv" ]; then
 fi
 . venv/bin/activate
 
-ls -l
-ls -l venv
-ls -l venv/bin/
+pip install -r requirements.txt -r requirements.dev.txt
+
+
 ########################
 # Step 2: Execute Test
 ########################
