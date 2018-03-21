@@ -4,7 +4,7 @@
 # This step is only for Jenkins. Travis and CircleCI will ignore this step.
 ########################
 if [ ! -d "venv" ]; then
-    python3 -m venv ./venv1
+    python3 -m venv ./venv
 fi
 . venv/bin/activate
 
