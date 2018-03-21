@@ -25,7 +25,7 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
-
+.pypirc
 
 # Installer logs
 pip-log.txt
