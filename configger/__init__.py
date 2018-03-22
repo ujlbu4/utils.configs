@@ -27,8 +27,7 @@ def _load(src_invoking_file, config_folder_name="configs", application_conf="app
                                     .parse_file(define_path(path=package_path, folder=config_folder_name, file=secrets_conf),
                                                 required=False))
 
-    # c = merge_configs(local_reference_conf, local_application_conf)
-    c = local_application_conf.with_fallback(local_reference_conf).with_fallback(local_secrets_conf)
+    c = local_secrets_conf.with_fallback(local_application_conf).with_fallback(local_reference_conf)
 
     return c
 
